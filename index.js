@@ -3,9 +3,40 @@ const c = canvas.getContext('2d')
 
 // Firebase Config
 
-(() => {
-    firebase.auth().signInAnonymously()
-})
+const fire = () => {
+
+    let playerId;
+    let playerRef;
+
+    firebase.auth().onAuthStateChanged((user) => {
+        console.log(user)
+        if (user) {
+            console.log('Logged in')
+            playerId = user.id;
+            playerRef = firebase.database().ref(`players/${playerId}`)
+
+            playerRef.set({
+                id: playerId,
+                name: "Michael",
+                direction: "right",
+                color: "blue",
+                x: 3,
+                y: 3
+            })
+        } else {
+            console.log('Logged out')
+        }
+    })
+
+    firebase.auth().signInAnonymously().catch((error) => {
+        let errorCode = error.code;
+        let errorMessage = error.message;
+
+        console.log(errorCode, errorMessage)
+    })
+}
+
+fire()
 
 
 
@@ -46,7 +77,7 @@ class Boundary {
 const boundaries = []
 const offset = {
     x: 0,
-    y: -1000
+    y: -900
 }
 
 collisionsMap.forEach((row, i) => {
@@ -244,8 +275,8 @@ const animate  = () => {
                     rectangle2: {
                         ...boundary,
                         position: {
-                            x:boundary.position.x,
-                            y:boundary.position.y + 1
+                            x: boundary.position.x,
+                            y: boundary.position.y + 1
                         }
                     }
                 })){
@@ -268,7 +299,7 @@ const animate  = () => {
         for (let i = 0; i < boundaries.length; i++) {
             const boundary = boundaries[i]
             if (rectangularCollision({
-                rectangle: player,
+                rectangle1: player,
                 rectangle2: {
                     ...boundary,
                     position: {
@@ -294,7 +325,7 @@ const animate  = () => {
         for (let i = 0; i < boundaries.length; i++) {
             const boundary = boundaries[i]
             if (rectangularCollision({
-                rectangle: player,
+                rectangle1: player,
                 rectangle2: {
                     ...boundary,
                     position: {
@@ -319,7 +350,7 @@ const animate  = () => {
         for (let i = 0; i < boundaries.length; i++) {
             const boundary = boundaries[i]
             if (rectangularCollision({
-                rectangle: player,
+                rectangle1: player,
                 rectangle2: {
                     ...boundary,
                     position: {

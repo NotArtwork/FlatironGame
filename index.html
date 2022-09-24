@@ -1,7 +1,29 @@
 <link rel="stylesheet" href="index.css">
+<body>
 <canvas>
 
 </canvas>
+ 
 
-<script defer src="data/collisions.js"></script>
-<script defer src="index.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+        <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAUF33U5MiIzsx3e0ylUDZFE6d7ec3vpOQ",
+            authDomain: "flatiron-game.firebaseapp.com",
+            databaseURL: "https://flatiron-game-default-rtdb.firebaseio.com",
+            projectId: "flatiron-game",
+            storageBucket: "flatiron-game.appspot.com",
+            messagingSenderId: "279313152144",
+            appId: "1:279313152144:web:b5052ec6994cb509ca0015"
+        }
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig)
+    </script>
+<script  src="data/collisions.js"></script>
+<script  src="index.js"></script>
+</body>
+
