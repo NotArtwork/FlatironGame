@@ -49,8 +49,8 @@ fire()
 
 
 // Flatiron Game
-canvas.width = 1920
-canvas.height = 1080
+canvas.width = 1280
+canvas.height = 720
 console.log(c)
 
 const collisionsMap = []
@@ -59,20 +59,7 @@ for ( let i = 0; i < collisions.length; i+=70) {
 }
 
 console.log(collisionsMap)
-class Boundary {
-    static width = 48
-    static height = 48
-    constructor({ position }) {
-        this.position = position
-        this.width = 48
-        this.height = 48 
-    }
 
-    draw() {
-        c.fillStyle = 'red'
-        c.fillRect(this.position.x, this.position.y, this.width, this.height)
-    }
-}
 
 const boundaries = []
 const offset = {
@@ -97,8 +84,9 @@ console.log(boundaries)
 const image = new Image()
 image.src = './img/FlatironExp.png'
 
-const fakePlayer = new Image()
-fakePlayer.src = './img/collision.png'
+const foregroundImage = new Image()
+foregroundImage.src = './img/ForegroundObjects.png'
+
 
 const playerDownImage = new Image()
 playerDownImage.src = './img/AlinaDown.png'
@@ -113,52 +101,8 @@ const playerRightImage = new Image()
 playerRightImage.src = './img/AlinaRight.png'
 
 
-class Sprite {
-    constructor({ position, velocity, image, frames = {max: 1}, sprites = []}) {
-        this.position = position
-        this.image = image
-        this.frames = {...frames, val: 0, elapsed: 0}
 
-        this.image.onload = () => {
-            this.width = this.image.width / this.frames.max
-            this.height = this.image.height
-            console.log(this.width)
-            console.log(this.height)
-        }
-        this.moving = false
-        this.sprites = sprites
-    }
 
-draw() {
-    // c.drawImage(this.image, this.position.x, this.position.y)
-    c.drawImage(
-        this.image,
-        this.frames.val * 96 ,
-        0,
-        this.image.width / this.frames.max,
-        this.image.height,
-        this.position.x,
-        this.position.y,
-        this.image.width / this.frames.max,
-        this.image.height
-        )
-
-        if (this.moving) {
-            if (this.frames.max > 1) {
-                this.frames.elapsed++
-            }
-        
-
-        if (this.frames.elapsed % 10 === 0) {
-
-            if (this.frames.val < this.frames.max - 1) {
-                this.frames.val++ }
-                else {
-                this.frames.val = 0}
-    }
-    }
-    }
-}
 
 const player = new Sprite({
     position: {
@@ -185,6 +129,15 @@ const background = new Sprite({
     },
     image: image
 })
+
+const foreground = new Sprite({
+    position: {
+        x: offset.x,
+        y: offset.y
+    },
+    image: foregroundImage
+})
+
 
 const keys = {
     w: {
@@ -222,14 +175,8 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
     )
 }
 
-    const testBoundary = new Boundary({
-        position: {
-            x: 400,
-            y: 400
-        }
-    })
     
-    const movables = [background, ...boundaries]
+    const movables = [background, foreground,...boundaries]
 
 const animate  = () => { 
     window.requestAnimationFrame(animate)
@@ -248,6 +195,7 @@ const animate  = () => {
         // }
     })
     player.draw()
+    foreground.draw()
     // c.drawImage(this,
     //     0,ß
     //     0,
@@ -276,7 +224,7 @@ const animate  = () => {
                         ...boundary,
                         position: {
                             x: boundary.position.x,
-                            y: boundary.position.y + 1
+                            y: boundary.position.y + 3
                         }
                     }
                 })){
