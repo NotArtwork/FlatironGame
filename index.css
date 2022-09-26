@@ -1,3 +1,8 @@
+* {
+    font-family: 'Press Start 2P', cursive;
+    box-sizing: border-box;
+}
+
 body { 
     background-color: rgb(0, 0, 158);
 
@@ -13,4 +18,29 @@ canvas {
 #game-container canvas{
 
     image-rendering: pixelated;
+}
+
+#dialogueContainer {
+    background-color: white;
+    height: 140px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 4px black solid;
+    display: flex;
+    padding: 12px;
+}
+
+#classmateDialogueBox {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    padding: 12px;
+    display: none;
+    cursor: pointer;
+    color: black;
 }

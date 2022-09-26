@@ -64,7 +64,7 @@ for ( let i = 0; i < characters.length; i+=70) {
 }
 
 
-console.log(collisionsMap)
+// console.log(collisionsMap)
 
 
 const offset = {
@@ -101,7 +101,7 @@ charactersMap.forEach((row, i) => {
                 }))
 
         classmates.push(
-          new Sprite({ 
+          new Classmate({ 
             position: {
             x: j * Boundary.width + offset.x,
             y: i * Boundary.height + offset.y
@@ -111,13 +111,16 @@ charactersMap.forEach((row, i) => {
             max: 8,
             hold: 10
         },
-        scale: 3
-    }))
+        scale: 3,
+        dialogue: ["...", "Can't think after those 2 hours.." ]
+     })
+    )
 }})
 })
 
-console.log(boundaries)
+// console.log(boundaries)
 // Image Import for Game
+
 const image = new Image()
 image.src = './img/FlatironExp.png'
 
@@ -191,16 +194,6 @@ const keys = {
     }
 }
     
-function rectangularCollision({ rectangle1, rectangle2 }) {
-    return (
-        rectangle1.position.x + rectangle1.width >= rectangle2.position.x &&
-        rectangle1.position.x <= rectangle2.position.x + rectangle2.width &&
-        rectangle1.position.y <= rectangle2.position.y + rectangle2.height &&
-        rectangle1.position.y + rectangle1.height >= rectangle2.position.y
-    )
-}
-
-    
     const movables = [background, foreground,...boundaries, ...classmates]
 
     const renderables = [background, ...boundaries, ...classmates,  player, foreground]
@@ -221,26 +214,12 @@ const animate  = () => {
     let moving = true
     player.moving = false
     if (keys.w.pressed) {
-        console.log('player:', player.position.x, player.position.y, 'background:', background.position.x, background.position.y)
+        // console.log('player:', player.position.x, player.position.y, 'background:', background.position.x, background.position.y)
         player.moving = true
         player.image = player.sprites.up
 
         // Check for Character Collision
-            for (let i = 0; i < classmates.length; i++) {
-                const classmate = classmates[i]
-                if (rectangularCollision({
-                    rectangle1: player,
-                    rectangle2: {...classmate,
-                    position: {
-                        x: classmate.position.x,
-                        y: classmate.position.y + 3
-                    }
-                }
-            })
-            ) {
-                console.log('hello')
-            }
-            }
+        checkForCharacterCollision({classmates, player, characterOffset: {x:0, y:3}})
         // return instead of break for canceling movement
             for (let  i = 0; i < boundaries.length; i++) {
                 const boundary = boundaries[i]
@@ -269,6 +248,9 @@ const animate  = () => {
     } else if (keys.s.pressed) {
         player.moving = true
         player.image = player.sprites.down
+
+
+        checkForCharacterCollision({ classmates, player, characterOffset: { x: 0, y: -3 } })
 
         // return instead of break for canceling movement
         for (let i = 0; i < boundaries.length; i++) {
@@ -299,6 +281,10 @@ const animate  = () => {
         // return instead of break for canceling movement
         for (let i = 0; i < boundaries.length; i++) {
             const boundary = boundaries[i]
+
+
+            checkForCharacterCollision({ classmates, player, characterOffset: { x: 3, y: 0 } })
+
             if (rectangularCollision({
                 rectangle1: player,
                 rectangle2: {
@@ -321,6 +307,9 @@ const animate  = () => {
     } else if (keys.d.pressed) {
         player.moving = true
         player.image = player.sprites.right
+
+        checkForCharacterCollision({ classmates, player, characterOffset: { x: -3, y: 0 } })
+
         // return instead of break for canceling movement
         for (let i = 0; i < boundaries.length; i++) {
             const boundary = boundaries[i]
@@ -351,8 +340,32 @@ animate()
 // Key Event Listeners 
 
 window.addEventListener('keydown', (e) => {
+    if (player.isInteracting) {
+        switch(e.key) {
+            case ' ':
+                player.interactionAsset.dialogueIndex++
 
+                const { dialogueIndex, dialogue } = player.interactionAsset
+                if (dialogueIndex <= dialogue.length - 1) {
+                document.querySelector('#dialogueContainer').innerHTML = (player.interactionAsset.dialogue[dialogueIndex])
+                return
+                }
+                
+                player.isInteracting = false
+                player.interactionAsset.dialogueIndex = 0
+                document.querySelector('#dialogueContainer').style.display = 'none'
+                break
+        }
+    }
     switch (e.key) { 
+        case ' ':
+            if (!player.interactionAsset) return
+            player.isInteracting = true
+            
+            const firstMessage = player.interactionAsset.dialogue[0]
+            document.quertSelector('#dialogueContainer').style.display = 'flex'
+            document.querySelector('#dialogueContainer').innerHTML = firstMessage
+            break
         case 'w':
             keys.w.pressed = true
             break

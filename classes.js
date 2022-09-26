@@ -7,12 +7,13 @@ class Sprite {
         this.image.onload = () => {
             this.width = (this.image.width / this.frames.max) * scale
             this.height = (this.image.height) * scale;
-            console.log(this.width)
-            console.log(this.height)
+            // console.log(this.width)
+            // console.log(this.height)
         }
         this.moving = false
         this.sprites = sprites
         this.scale = scale
+        this.interactionAsset
     }
 
     draw() {
@@ -28,7 +29,7 @@ class Sprite {
         }
         c.drawImage(
             this.image,
-            this.frames.val * 96,
+            this.frames.val * (96) / this.scale,
             0,
             this.image.width / this.frames.max,
             this.image.height,
@@ -70,4 +71,21 @@ class Boundary {
         c.fillStyle = 'rgba(0, 0, 0, 0.0)'
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
+}
+
+class Classmate extends Sprite {
+    constructor({ position, velocity, image, frames = { max: 1 }, sprites = [], scale = 1, dialogue = [''] }) {
+        super({
+            position,
+            velocity,
+            image, 
+            frames,
+            sprites, 
+            scale
+        })
+        this.dialogue = dialogue
+        this.dialogueIndex = 0
+    }
+
+
 }
