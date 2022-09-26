@@ -1,31 +1,41 @@
 class Sprite {
-    constructor({ position, velocity, image, frames = { max: 1 }, sprites = [] }) {
+    constructor({ position, velocity, image, frames = { max: 1 }, sprites = [], scale = 1 }) {
         this.position = position
         this.image = image
         this.frames = { ...frames, val: 0, elapsed: 0 }
 
         this.image.onload = () => {
-            this.width = this.image.width / this.frames.max
-            this.height = this.image.height
+            this.width = (this.image.width / this.frames.max) * scale
+            this.height = (this.image.height) * scale;
             console.log(this.width)
             console.log(this.height)
         }
         this.moving = false
         this.sprites = sprites
+        this.scale = scale
     }
 
     draw() {
         // c.drawImage(this.image, this.position.x, this.position.y)
+
+        const image ={
+            position: {
+                x: this.position.x,
+                y: this.position.y
+            },
+            width: this.image.width / this.frames.max,
+            height: this.image.height
+        }
         c.drawImage(
             this.image,
             this.frames.val * 96,
             0,
             this.image.width / this.frames.max,
             this.image.height,
-            this.position.x,
-            this.position.y,
-            this.image.width / this.frames.max,
-            this.image.height
+            image.position.x,
+            image.position.y,
+            image.width * this.scale,
+            image.height * this.scale
         )
 
         if (this.moving) {

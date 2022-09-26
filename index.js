@@ -58,15 +58,21 @@ for ( let i = 0; i < collisions.length; i+=70) {
     collisionsMap.push(collisions.slice(i, 70 + i))
 }
 
+const charactersMap = []
+for ( let i = 0; i < characters.length; i+=70) {
+    charactersMap.push(characters.slice(i, 70 + i))
+}
+
+
 console.log(collisionsMap)
 
 
-const boundaries = []
 const offset = {
     x: 0,
     y: -900
 }
 
+const boundaries = []
 collisionsMap.forEach((row, i) => {
     row.forEach((symbol, j) => {
         if (symbol === 8659)
@@ -77,6 +83,37 @@ collisionsMap.forEach((row, i) => {
             y: i * Boundary.height + offset.y
         }}))
     })
+})
+
+const classmates = []
+const classmateImg = new Image()
+classmateImg.src = './img/Test.png'
+
+charactersMap.forEach((row, i) => {
+    row.forEach((symbol, j) => {
+        if (symbol === 58051) {
+            boundaries.push(
+                new Boundary({
+                    position: {
+                        x: j * Boundary.width + offset.x,
+                        y: i * Boundary.height + offset.y
+                    }
+                }))
+
+        classmates.push(
+          new Sprite({ 
+            position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y
+        },
+        image: classmateImg,
+        frames: {
+            max: 8,
+            hold: 10
+        },
+        scale: 3
+    }))
+}})
 })
 
 console.log(boundaries)
@@ -153,18 +190,6 @@ const keys = {
         pressed:false
     }
 }
-
-
-// const touch = ({rectangle, rectangle2}) => {
-//     // console.log('boundry', rectangle.width, rectangle2.width)
-//     return (
-//     (rectangle.position.x + rectangle.width >= rectangle2.position.x) &&
-//     (rectangle.position.x <= rectangle2.position.x + rectangle2.width)
-//     // (rectangle.position.y <= (rectangle2.position.y + rectangle2.height))
-//     // (rectangle.position.y + rectangle.height) >= (rectangle2.position.y) 
-    
-//     )
-//     }
     
 function rectangularCollision({ rectangle1, rectangle2 }) {
     return (
@@ -176,44 +201,46 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
 }
 
     
-    const movables = [background, foreground,...boundaries]
+    const movables = [background, foreground,...boundaries, ...classmates]
+
+    const renderables = [background, ...boundaries, ...classmates,  player, foreground]
 
 const animate  = () => { 
     window.requestAnimationFrame(animate)
-    // console.log('homies')
-    background.draw()
-    // testBoundary.draw()
-    boundaries.forEach(boundary => {
-        boundary.draw()
-        // if (
-        //     touch({
-        //         rectangle: player,
-        //         rectangle2: boundary
-        //     })
-        // ) {
-        //     console.log('bonk')
-        // }
-    })
-    player.draw()
-    foreground.draw()
-    // c.drawImage(this,
-    //     0,ß
-    //     0,
-    //     this.width / 4,
-    //     this.height,
-    //     0,
-    //     -1800,
-    //     this.width / 4,
-    //     this.height
-    //     )
-  
+    // background.draw()
+    // boundaries.forEach(boundary => {
+    //     boundary.draw()
 
+    // })
+    // player.draw()
+    // foreground.draw()
+
+    renderables.forEach((renderables) => {
+        renderables.draw()
+    })
     let moving = true
     player.moving = false
     if (keys.w.pressed) {
         console.log('player:', player.position.x, player.position.y, 'background:', background.position.x, background.position.y)
         player.moving = true
         player.image = player.sprites.up
+
+        // Check for Character Collision
+            for (let i = 0; i < classmates.length; i++) {
+                const classmate = classmates[i]
+                if (rectangularCollision({
+                    rectangle1: player,
+                    rectangle2: {...classmate,
+                    position: {
+                        x: classmate.position.x,
+                        y: classmate.position.y + 3
+                    }
+                }
+            })
+            ) {
+                console.log('hello')
+            }
+            }
         // return instead of break for canceling movement
             for (let  i = 0; i < boundaries.length; i++) {
                 const boundary = boundaries[i]
