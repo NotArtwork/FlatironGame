@@ -28,7 +28,7 @@ canvas {
     left: 0;
     right: 0;
     border-top: 4px black solid;
-    display: flex;
+    display: none;
     padding: 12px;
 }
 

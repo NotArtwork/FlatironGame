@@ -343,29 +343,34 @@ window.addEventListener('keydown', (e) => {
     if (player.isInteracting) {
         switch(e.key) {
             case ' ':
+                
                 player.interactionAsset.dialogueIndex++
-
                 const { dialogueIndex, dialogue } = player.interactionAsset
                 if (dialogueIndex <= dialogue.length - 1) {
-                document.querySelector('#dialogueContainer').innerHTML = (player.interactionAsset.dialogue[dialogueIndex])
-                return
+                    document.querySelector('#dialogueContainer').innerHTML = (player.interactionAsset.dialogue[dialogueIndex])
+                    return
                 }
                 
-                player.isInteracting = false
-                player.interactionAsset.dialogueIndex = 0
                 document.querySelector('#dialogueContainer').style.display = 'none'
-                break
+                player.interactionAsset.dialogueIndex = 0
+                player.isInteracting = false
+                // console.log('interacting', player.isInteracting)
+                console.log('second catch')
+                break   
         }
+        return
     }
     switch (e.key) { 
         case ' ':
             if (!player.interactionAsset) return
-            player.isInteracting = true
             
             const firstMessage = player.interactionAsset.dialogue[0]
-            document.quertSelector('#dialogueContainer').style.display = 'flex'
+            document.querySelector('#dialogueContainer').style.display = 'flex'
             document.querySelector('#dialogueContainer').innerHTML = firstMessage
-            break
+            player.isInteracting = true
+            // console.log('interacting', player.isInteracting)
+            console.log('first catch')
+            return
         case 'w':
             keys.w.pressed = true
             break
