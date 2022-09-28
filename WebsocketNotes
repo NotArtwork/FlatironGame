@@ -1,0 +1,16 @@
+// Burn the server/ Pull Request
+setInterval(() => {
+        updateScreen()
+    }, 1000)
+
+// Long Polling
+
+
+
+// Websockets actively makes a mutual connection to the server and the  client.
+// -- Think of Websockets as a way of creating an event listener
+// These messages are called payloads. 
+
+
+// Pub/Sub is a Design Pattern.
+// Publishers sends messages to Subscribers.

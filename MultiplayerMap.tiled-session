@@ -8,10 +8,20 @@
     ],
     "fileStates": {
     },
+    "last.imagePath": "/Users/art/Desktop/Game Assets",
+    "map.height": 30,
     "map.orientation": null,
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 20,
     "openFiles": [
     ],
     "project": "MultiplayerMap.tiled-project",
     "recentFiles": [
-    ]
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
 }
