@@ -20,7 +20,7 @@ label {
 
 h2 {
     font-size: 15px;
-    padding-bottom: 30px;
+    position: absolute;
     text-transform: uppercase;
 }
 
@@ -74,10 +74,10 @@ clip-path: polygon(75% 0%,
     content:'';
     background-color:red;
 
-    /* clip-path: polygon(85% 0%,
+    clip-path: polygon(85% 0%,
                 90% 0%,
                 70% 100%,
-                65% 100%); */
+                65% 100%); 
 }  */
 
 /* #flatiron-slice2 {
@@ -90,13 +90,13 @@ clip-path: polygon(95% 0%,70% 0%,50% 100%,45% 100%);
     flex-direction: column;
     align-items: center;
     position: absolute;
-    height: 500px;
+    height: 300px;
     width: 400px;
     background: rgba(255, 255, 255, 0.7);
     border-radius: 20px;
     z-index: 100;
     top:60%;
-    left:80%;
+    left:85%;
     transform: translate(-50%,-50%);
 
 }
