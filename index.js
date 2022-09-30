@@ -15,6 +15,8 @@ const fire = () => {
             playerId = user.id;
             playerRef = firebase.database().ref(`players/${playerId}`)
 
+            const name = createName();
+
             playerRef.set({
                 id: playerId,
                 name: "Michael",

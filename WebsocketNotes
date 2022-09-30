@@ -1,3 +1,5 @@
+const { createDispatchHook } = require("react-redux")
+
 // Burn the server/ Pull Request
 setInterval(() => {
         updateScreen()
@@ -14,3 +16,18 @@ setInterval(() => {
 
 // Pub/Sub is a Design Pattern.
 // Publishers sends messages to Subscribers.
+// Websocket is already built into React
+
+//ws.onopen happens automatically when you pass it a URL
+
+// mount ActionCable
+
+
+// How it works,
+
+// I play a card
+// send request to server with into about the card that was played.
+// redis server broadcasts a message to all sub'd clients about card that was played
+
+// A sub'd client, will receieve a message about the card that was played.
+// It will run a function to synchronize the client based on

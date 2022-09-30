@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Press Start 2P';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-container {
+    position: relative;
+    width: 70%;
+    height: 70vh;
+    background: url(../img/MulitiplayerMap.png) no-repeat no-repeat;
+    image-rendering: pixelated;
+}
+
+.player-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1em;
+    display: flex;
+    gap: 0.5em;
+    align-items: flex-end;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+input[type="text"], button {
+    font-family: 'Press Start 2P';
+    font-weight: bold;
+    font-size: 18px;
+    height: 44px;
+    border-radius: 4px;
+    outline: 0;
+}

@@ -12,4 +12,23 @@ class OverworldMap {
     drawLowerImage(ctx) {
         ctx.drawImage(this.lowerImage, 0, 0)
     }
+
+    drawUpperImage(ctx) {
+        ctx.drawImage(this.upperImage, 0, 0)
+    }
+
+
+}
+
+window.OverworldMaps = {
+    DemoRoom: {
+        lowerSrc: '',
+        UpperSrc: '',
+        gameObjects: {
+            hero: new GameObject({
+                
+            })
+        }
+    },
+
 }
