@@ -12,6 +12,7 @@ input {
     width: 100%;
         border-radius: 20px;
         padding: 10px 20px;
+        background-color: rgba(255, 255, 255, 0.4);
 }
 
 label {
@@ -19,9 +20,14 @@ label {
 }
 
 h2 {
-    font-size: 15px;
-    position: absolute;
+    font-size: 20px;
+    padding-bottom: 60px;
+    /* position: absolute; */
     text-transform: uppercase;
+}
+
+#login h2 {
+   
 }
 
 #background-tint {
@@ -32,6 +38,7 @@ h2 {
 }
 
 #white-background {
+    backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.7);
     z-index: 2;
     clip-path: polygon(65% 0%,
@@ -91,11 +98,11 @@ clip-path: polygon(95% 0%,70% 0%,50% 100%,45% 100%);
     align-items: center;
     position: absolute;
     height: 300px;
-    width: 400px;
-    background: rgba(255, 255, 255, 0.7);
+    width: 500px;
+
     border-radius: 20px;
     z-index: 100;
-    top:60%;
+    top:55%;
     left:85%;
     transform: translate(-50%,-50%);
 
@@ -103,6 +110,7 @@ clip-path: polygon(95% 0%,70% 0%,50% 100%,45% 100%);
 
 #flatiron-logo {
     color: cyan;
+
 
 }
 
@@ -116,17 +124,32 @@ clip-path: polygon(95% 0%,70% 0%,50% 100%,45% 100%);
     margin: 0 auto;
 }
 
+#login-input {
+margin-top: 30px;
+}
+
 
 #login-form{
+    
     width: 80%;
     display:flex;
     flex-direction: column;
      align-items: center;
 }
 
+#buttons {
+    width: 100%;
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
 #buttons button {
-    height: 30px;
-    width: 100px;
+    font-family: 'Press Start 2P';
+    padding:10px 5px;
+    width: 180px;
     border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.4);
+    
 }
 

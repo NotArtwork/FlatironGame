@@ -6,15 +6,13 @@ const login = async (name) => {
 
 }
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('click', (e) => {
     e.preventDefault()
     e.stopPropagation()
     
     let activeElement = document.activeElement;
     console.log(activeElement)
-
-    let name = e.target.value
-    login(name)
+    
 })
 
 !!+[]
