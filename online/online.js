@@ -1,6 +1,54 @@
 const playerColors = ['blue', 'red', 'pink', 'yellow', 'black', 'green', 'purple']
 
+// Online Functions
 
+const msgScreen = document.getElementById('messages')
+const msgForm = document.getElementById('messageForm')
+const msgInput = document.getElementById('msg-input')
+const msgBtn = document.getElementById('msg-btn')
+
+const db = firebase.database()
+const msgRef = db.ref('/msgs')
+
+let myName = ""
+
+function init() {
+
+    msgRef.on('child_added', updateMsgs);
+
+}
+
+const updateMsgs = (data) => {
+    const {dataName, text} = data.val();
+    const msg = 
+    `<li class="${dataName == myName ? "msg my" : "msg"}"><span class = "msg-span">
+    <i class ="name"> ${myName}: </i> ${text}
+    </span>
+    </li>`
+
+    msgScreen.innerHTML += msg;
+    document.getElementById('chat-window').scrollTop = 
+    document.getElementById('chat-window').scrollHeight;
+}
+
+function sendMessage(e) {
+    e.preventDefault();
+    const text = msgInput.value
+    
+    if(!text.trim()) return alert('Please type a message'); // No Msg Submitted Alert
+    
+    const msg = {
+        name: myName,
+        text: text
+    }
+    
+    msgRef.push(msg)
+    msgInput.value = '';
+}
+
+
+
+msgForm.addEventListener('submit', sendMessage);
 
 // Helper Functions 
 
@@ -44,7 +92,27 @@ function createName() {
     return `${prefix} ${animal}`
 }
 
-
+function getRandomSafeSpot() {
+    return randomFromArray([
+        {x: 1, y: 4},
+        {x: 2, y: 4},
+        {x: 1, y: 6},
+        {x: 5, y: 5},
+        {x: 3, y: 4},
+        {x: 5, y: 4},
+        {x: 1, y: 4},
+        {x: 4, y: 2},
+        {x: 4, y: 1},
+        {x: 1, y: 4},
+        {x: 1, y: 10},
+        {x: 3, y: 7},
+        {x: 7, y: 4},
+        {x: 9, y: 4},
+        {x: 10, y: 4},
+        {x: 1, y: 9},
+        {x: 5, y: 5},
+    ]);
+}
 
 let playerId;
 let playerRef;
@@ -52,9 +120,44 @@ let players = {};
 let playerElements = {};
 
 const gameContainer = document.querySelector("#game-container");
+const playerNameInput = document.querySelector("#player-name");
+const playerColorButton = document.querySelector("#player-color");
 console.log(gameContainer);
 
+function handleArrowPress(xChange = 0, yChange = 0) {
+    const newX = players[playerId].x + xChange
+    const newY = players[playerId].y + yChange
+
+    if (true) {
+        players[playerId].x = newX
+        players[playerId].y = newY
+        if (xChange === 1) {
+            players[playerId].direction = "right";
+        }
+        if (xChange === -1) {
+            players[playerId].direction = "left";
+        }
+
+        if (yChange === 1) {
+            players[playerId].direction = "up";
+        }
+    
+        if (yChange === -1) {
+            players[playerId].direction = "down";
+        }
+
+        playerRef.set(players[playerId]);
+    }
+}
+
 function initGame() {
+
+    new KeyPressListener("ArrowUp", () => handleArrowPress(0, -1))
+    new KeyPressListener("ArrowDown", () => handleArrowPress(0, 1))
+    new KeyPressListener("ArrowLeft", () => handleArrowPress(-1, 0))
+    new KeyPressListener("ArrowRight", () => handleArrowPress(1, 0))
+
+
     const allPlayersRef = firebase.database().ref(`players`);
     const allCoinsRef = firebase.database().ref(`coins`);
 
@@ -62,16 +165,16 @@ function initGame() {
         //whenever a player logs in
         players = snapshot.val() || {};
         Object.keys(players).forEach((key) => {
-            const characterState = players[keys];
+            const characterState = players[key];
             let el = playerElements[key];
 
-            el.querySelector(".Character_name").innerText = characterState.name;
+            el.querySelector(".character_name").innerText = characterState.name;
             el.querySelector(".Character_coins").innerText = characterState.coins;
             el.setAttribute("data-color", characterState.color);
             el.setAttribute("data-direction", characterState.direction);
             const left =  16 * characterState.x + "px"
             const top =  16 * characterState.y + "px"
-            el.style.transform = `translate3d(${left}, ${top}, 0)`
+            el.style.transform = `translate3d(${left}, ${top}, 0)`;
         })
     })
 
@@ -103,6 +206,20 @@ function initGame() {
         characterElement.style.transform = `translated3d(${left}, ${top}, 0)`;
         gameContainer.appendChild(characterElement);
     })
+
+    allPlayersRef.on("child_removed", (snapshot) => {
+        const removedKey = snapshot.val().id
+        gameContainer.removeChild(playerElements[removedKey]);
+        delete playerElements[removedKey];
+    })
+
+    playerNameInput.addEventListener("change", (e) => {
+        const newName = e.target.value || createName()
+        playerNameInput.value = newName;
+        playerRef.update({
+            name: newName
+        })
+    })
 }
 
 firebase.auth().onAuthStateChanged((user) => {
@@ -113,14 +230,18 @@ firebase.auth().onAuthStateChanged((user) => {
         playerRef = firebase.database().ref(`players/${playerId}`)
 
         const name = createName();
+        playerNameInput.value = name;
+        myName = name
+
+        const {x, y} = getRandomSafeSpot();
 
         playerRef.set({
             id: playerId,
             name,
             direction: "right",
             color: randomFromArray(playerColors),
-            x: 3,
-            y: 3,
+            x,
+            y,
             coins: 0
         })
 
@@ -140,6 +261,9 @@ firebase.auth().signInAnonymously().catch((error) => {
 
     console.log(errorCode, errorMessage)
 })
+
+
+document.addEventListener('DOMContentLoaded', init);
 
 
 

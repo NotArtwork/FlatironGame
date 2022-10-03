@@ -9,11 +9,38 @@
 
 </head>
 <body>
-    <div id="game-container">
-    <canvas>
-        
-    </canvas>
+    <div class="chat">
+        <div class="chat-window" id="chat-window">
+            <ul id="messages">
+                <li class="msg">
+                    <span class="msg-span">
+                        <i class="name">Host: </i> Hello and welcome to the chat!
+                    </span>
+                </li>
+            </ul>
+                <form id="messageForm" autocomplete="off">
+                    <input type="text" id="msg-input" placeholder="Enter a message">
+                    <button id="msg-btn" type="submit">Send</button>
+                </form>
+        </div>
     </div>
+
+
+
+
+
+
+
+    <!--  Multiplayer Code -->
+    <div id="game-container">
+    </div>
+            <div class="player-info">
+                <div>
+                    <label for="player-name">Your Name</label>
+                    <input id="player-name" maxlength="10" type="text" />
+                </div>
+            <div>
+    
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
@@ -33,6 +60,7 @@
             firebase.initializeApp(firebaseConfig)
         </script>
         <script src="KeyPressListener.js"></script>
+        <script src="./chatroom.js"></script>
         <script src="./online.js"></script>
 
 </body>
