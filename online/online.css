@@ -1,33 +1,129 @@
 * {
     box-sizing: border-box;
+    /* background-color: #222; */
+    color: #e6e6e6;
 }
 
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+    background-color: #333;
     font-family: 'Press Start 2P';
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+#everything {
+    display: flex;
+}
 #game-container {
-    position: relative;
-    width: 850px;
-    height: 1000px;
+    /* position: relative; */
+    width: 50vw;
+    height: 90vh;
     background: url(../img/MulitiplayerMap.png) no-repeat no-repeat;
+    background-size: cover;
     image-rendering: pixelated;
+  
+    
+}
+.chat{
+    border-color: #ccc;
+    /* background-color: #ddd; */
+    border-radius: 5px;
+    margin: 10px 0;
+
+        padding-right: 30px;
+            padding-left: 30px;
+    width: 25vw;
 }
 
+.chat::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+
+.msg, .my-msg {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+ }
+
+ .name, .text {
+    margin-top: -5px;
+    padding: 5px 10px;
+    border-radius: 15px;
+        color: #333;
+ }
+
+.name {
+    color: rgba(255, 255, 255, 0.7);
+ width: max-content;
+background-color: rgb(85, 85, 85);
+border-radius: 15px;
+
+}
+.text {
+   width: 60%;
+   background-color: cyan; 
+   margin-top: -10px;
+    margin-bottom: 28px;
+
+}
+
+.my-msg {
+    align-items: flex-end;
+align-self: right;
+    text-align: right;
+    /* background-color: cyan; */
+
+}
+
+
+#messageForm {
+        display: flex;
+            justify-content: space-between;
+}
+
+#messages {
+    padding-left: 0;
+    list-style-type: none;
+    height: 80vh;
+    overflow-y: scroll;
+}
+
+
+
 .player-info {
-    position: absolute;
+    width: 25vw;
+    align-self: start;
+    margin-top: 30px;
+    padding-left: 30px;
+
+    /* position: absolute;
     top: 0;
-    left: 0;
-    padding: 1em;
+    left: 0; */
+    /* padding: 1em;
     display: flex;
     gap: 0.5em;
-    align-items: flex-end;
+    align-items: flex-end; */
+}
+
+#player-name {
+    width: 90%;
+}
+
+input#player-name {
+    background-color: white;
+    color: black;
+}
+#msg-input{
+    width: 100%;
+    background-color: white;
 }
 
 label {

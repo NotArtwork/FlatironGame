@@ -15,7 +15,7 @@ canvas {
     transform: translate(-50%,-50%);
 }
 
-#game-container canvas{
+.game-container canvas {
 
     image-rendering: pixelated;
 }

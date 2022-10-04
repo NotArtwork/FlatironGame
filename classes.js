@@ -1,3 +1,5 @@
+const { useEffect } = require("react")
+
 class Sprite {
     constructor({ position, velocity, image, frames = { max: 1 }, sprites = [], scale = 1 }) {
         this.position = position
@@ -89,3 +91,6 @@ class Classmate extends Sprite {
 
 
 }
+
+
+

@@ -9,36 +9,44 @@
 
 </head>
 <body>
-    <div class="chat">
-        <div class="chat-window" id="chat-window">
-            <ul id="messages">
-                <li class="msg">
-                    <span class="msg-span">
-                        <i class="name">Host: </i> Hello and welcome to the chat!
-                    </span>
-                </li>
-            </ul>
-                <form id="messageForm" autocomplete="off">
-                    <input type="text" id="msg-input" placeholder="Enter a message">
-                    <button id="msg-btn" type="submit">Send</button>
-                </form>
-        </div>
+
+
+
+
+
+    <div class="player-info">
+        <label for="player-name">Your Name</label>
+        <input id="player-name" maxlength="10" type="text" />
     </div>
-
-
-
-
-
 
 
     <!--  Multiplayer Code -->
+    <div id="everything"> 
     <div id="game-container">
+        <!-- <canvas class="game-canvas" width="352" height="198">
+
+        </canvas> -->
     </div>
-            <div class="player-info">
-                <div>
-                    <label for="player-name">Your Name</label>
-                    <input id="player-name" maxlength="10" type="text" />
-                </div>
+  
+      
+
+                    <div class="chat">
+                        <div class="chat-window" id="chat-window">
+                            <ul id="messages">
+                                <li class="msg">
+                                    <span class="msg-span">
+                                        <i class="name">Host: </i> Hello and welcome to the chat!
+                                    </span>
+                                </li>
+                            </ul>
+                            <form id="messageForm" autocomplete="off">
+                                <input type="text" id="msg-input" placeholder="Enter a message">
+                                <button id="msg-btn" type="submit">Send</button>
+                            </form>
+                        </div>
+                    </div>
+
+
             <div>
     
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -59,6 +67,8 @@
             // Initialize Firebase
             firebase.initializeApp(firebaseConfig)
         </script>
+        <script src="./OverworldMap.js"></script>
+        <script src="./init.js"></script>
         <script src="KeyPressListener.js"></script>
         <script src="./chatroom.js"></script>
         <script src="./online.js"></script>

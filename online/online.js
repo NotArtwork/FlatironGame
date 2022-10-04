@@ -14,21 +14,32 @@ let myName = ""
 
 function init() {
 
+
     msgRef.on('child_added', updateMsgs);
 
 }
 
 const updateMsgs = (data) => {
-    const {dataName, text} = data.val();
+    console.log(data.val())
+    const {name, text} = data.val();
+    console.log(name)
+
+    let names = name.split(' ') 
+
+    let = initials = names.map((element) => {
+        element[1]
+    }) 
+
+    console.log(initials)
     const msg = 
-    `<li class="${dataName == myName ? "msg my" : "msg"}"><span class = "msg-span">
-    <i class ="name"> ${myName}: </i> ${text}
-    </span>
+    `<li class="${name == myName ? "my-msg" : "msg"}">
+    <p class ="name"> ${name} </p> <p class="text">${text}</p>
+   
     </li>`
 
     msgScreen.innerHTML += msg;
-    document.getElementById('chat-window').scrollTop = 
-    document.getElementById('chat-window').scrollHeight;
+    // document.getElementById('chat-window').scrollTop = 
+    // document.getElementById('chat-window').scrollHeight;
 }
 
 function sendMessage(e) {
@@ -62,31 +73,32 @@ function getKeyString(x, y) {
 
 function createName() {
     const prefix = randomFromArray([
-        "Sorry",
+        "Discount",
         "Sorta Good",
         "Terrible",
         "Great",
         "Amazing",
         "Awesome",
-        "Cool",
+        "Send",
         "Rich",
-        "Soft",
+        "Google's",
         "Tough",
         "Hip",
+        "GA's"
     ])
 
     const animal = randomFromArray([
-        "Cat",
-        "Dog",
-        "Fox",
-        "Bear",
-        "Fox",
-        "Lamb",
+        "Software Engineer",
+        "Spy",
+        "Python Dev",
+        "JavaScript",
+        "5%",
+        "Michael",
         "Wolf",
-        "Bird",
-        "Bull",
+        "Help",
+        "TypeScript",
         "Bug",
-        "Seal"
+        "Art"
     ])
 
     return `${prefix} ${animal}`
@@ -216,6 +228,7 @@ function initGame() {
     playerNameInput.addEventListener("change", (e) => {
         const newName = e.target.value || createName()
         playerNameInput.value = newName;
+        myName = newName
         playerRef.update({
             name: newName
         })
@@ -242,7 +255,7 @@ firebase.auth().onAuthStateChanged((user) => {
             color: randomFromArray(playerColors),
             x,
             y,
-            coins: 0
+            coins: "//"
         })
 
 
