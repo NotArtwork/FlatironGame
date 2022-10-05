@@ -1,7 +1,7 @@
-[ ] User selection for Online/Story
-[ ] Defining Player ID/ Name on Registration
-[ ] Multiplayer Map
+[x] User selection for Online/Story
+[x] Defining Player ID/ Name on Registration
+[x] Multiplayer Map
 [ ] Making Characters Sprites (Maybe?)
-[ ] Spawning Players
-[ ] Chat Boxes
-[ ] Integration Chatroom ( On/Off of Game Canvas?)
+[x] Spawning Players
+[x] Chat Boxes
+[x] Integration Chatroom ( On/Off of Game Canvas?)

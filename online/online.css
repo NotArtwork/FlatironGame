@@ -18,6 +18,7 @@ html, body {
 #everything {
     display: flex;
 }
+
 #game-container {
     /* position: relative; */
     width: 50vw;
@@ -28,14 +29,13 @@ html, body {
   
     
 }
+
 .chat{
     border-color: #ccc;
-    /* background-color: #ddd; */
     border-radius: 5px;
     margin: 10px 0;
-
-        padding-right: 30px;
-            padding-left: 30px;
+    padding-right: 30px;
+    padding-left: 30px;
     width: 25vw;
 }
 
@@ -168,6 +168,13 @@ input[type="text"], button {
     width: 7px;
     height: 5px;
     background: url(../img/arrow.png) no-repeat no-repeat;
+}
+
+.Character_sprite {
+    overflow: hidden;
+    top: -3px;
+    background: url(../img/black\ suit.png);
+    transform: scale(3);
 }
 
 .Character[data-direction="right"] .Character_sprite {
