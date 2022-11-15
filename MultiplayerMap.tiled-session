@@ -3,22 +3,78 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "/Users/art/Desktop/Game Assets/FlatironExp.tmx",
     "expandedProjectPaths": [
     ],
     "exportAsImage.useCurrentScale": true,
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "/Users/art/Desktop/Game Assets/BlueSuit.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/art/Desktop/Game Assets/FlatironExp.tmx": {
+            "scale": 0.7766,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 227.27272727272728,
+                "y": 278.7792943600309
+            }
+        },
+        "/Users/art/Desktop/Game Assets/Flooring.tsx": {
+            "scaleInDock": 0.6839,
+            "scaleInEditor": 1
+        },
+        "/Users/art/Desktop/Game Assets/TestSuit.tsx": {
+            "scaleInDock": 1
+        },
+        "/Users/art/Desktop/Game Assets/brown cloths.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/art/Desktop/Game Assets/pink dress.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/art/Desktop/Game Assets/purple dress.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/art/Desktop/Game Assets/special_one blue dress.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/art/Flatiron Game Base.tsx": {
+            "scaleInDock": 1
+        }
     },
-    "last.imagePath": "/Users/art/Desktop/Game Assets",
+    "last.exportedFilePath": "/Users/art/Desktop/Game Assets",
+    "last.imagePath": "/Users/art/Downloads",
     "map.height": 30,
+    "map.lastUsedExportFilter": "JavaScript map files (*.js)",
     "map.orientation": null,
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "map.width": 20,
     "openFiles": [
+        "/Users/art/Desktop/Game Assets/Flooring.tsx",
+        "/Users/art/Desktop/Game Assets/FlatironExp.tmx",
+        "/Users/art/Desktop/Game Assets/BlueSuit.tsx",
+        "/Users/art/Desktop/Game Assets/pink dress.tsx",
+        "/Users/art/Desktop/Game Assets/brown cloths.tsx",
+        "/Users/art/Desktop/Game Assets/purple dress.tsx",
+        "/Users/art/Desktop/Game Assets/special_one blue dress.tsx",
+        "/Users/art/Desktop/Game Assets/special_one blue dress.tsx"
     ],
     "project": "MultiplayerMap.tiled-project",
     "recentFiles": [
+        "/Users/art/Desktop/Game Assets/Flooring.tsx",
+        "/Users/art/Desktop/Game Assets/special_one blue dress.tsx",
+        "/Users/art/Desktop/Game Assets/purple dress.tsx",
+        "/Users/art/Desktop/Game Assets/brown cloths.tsx",
+        "/Users/art/Desktop/Game Assets/pink dress.tsx",
+        "/Users/art/Desktop/Game Assets/BlueSuit.tsx",
+        "/Users/art/Desktop/Game Assets/FlatironExp.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

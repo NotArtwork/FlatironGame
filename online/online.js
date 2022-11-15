@@ -40,6 +40,7 @@ const updateMsgs = (data) => {
     msgScreen.innerHTML += msg;
     // document.getElementById('chat-window').scrollTop = 
     // document.getElementById('chat-window').scrollHeight;
+    autoscroll()
 }
 
 function sendMessage(e) {
@@ -274,6 +275,12 @@ firebase.auth().signInAnonymously().catch((error) => {
 
     console.log(errorCode, errorMessage)
 })
+
+const autoscroll = () => {
+
+    msgScreen.scrollTop = msgScreen.scrollHeight
+
+}
 
 
 document.addEventListener('DOMContentLoaded', init);

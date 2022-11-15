@@ -91,8 +91,13 @@ const classmates = []
 const classmateImg = new Image()
 classmateImg.src = './img/Test.png'
 
+const blueSuit = new Image()
+blueSuit.src ='./img/BlueSuit.png'
+
 charactersMap.forEach((row, i) => {
     row.forEach((symbol, j) => {
+
+
         if (symbol === 58051) {
             boundaries.push(
                 new Boundary({
@@ -117,7 +122,36 @@ charactersMap.forEach((row, i) => {
         dialogue: ["...", "Can't think after those 2 hours.." ]
      })
     )
-}})
+}
+        if (symbol === 58352) {
+            boundaries.push(
+                new Boundary({
+                    position: {
+                        x: j * Boundary.width + offset.x,
+                        y: i * Boundary.height + offset.y
+                    }
+                }))
+
+        classmates.push(
+          new Classmate({ 
+            position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y
+        },
+        image: blueSuit,
+        frames: {
+            max: 8,
+            hold: 10
+        },
+        scale: 3,
+        dialogue: ["I was told that the tuition only covers lunch for the first week"]
+     })
+    )
+}
+
+
+
+})
 })
 
 // console.log(boundaries)

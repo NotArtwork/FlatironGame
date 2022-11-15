@@ -4,6 +4,11 @@
     color: #e6e6e6;
 }
 
+i {
+    font-size: 30px;
+    color: white;
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -61,8 +66,8 @@ html, body {
  }
 
 .name {
-    color: rgba(255, 255, 255, 0.7);
- width: max-content;
+color: rgba(255, 255, 255, 0.7);
+width: max-content;
 background-color: rgb(85, 85, 85);
 border-radius: 15px;
 
@@ -71,13 +76,13 @@ border-radius: 15px;
    width: 60%;
    background-color: cyan; 
    margin-top: -10px;
-    margin-bottom: 28px;
+   margin-bottom: 28px;
 
 }
 
 .my-msg {
     align-items: flex-end;
-align-self: right;
+    align-self: right;
     text-align: right;
     /* background-color: cyan; */
 
@@ -149,6 +154,7 @@ input[type="text"], button {
 }
 
 .Charcter {
+    background-color: white;
     transition: transform 0.4s;
 }
 
@@ -174,7 +180,6 @@ input[type="text"], button {
     overflow: hidden;
     top: -3px;
     background: url(../img/black\ suit.png);
-    transform: scale(3);
 }
 
 .Character[data-direction="right"] .Character_sprite {
